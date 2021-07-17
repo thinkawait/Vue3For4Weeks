@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task for the first week</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+  />
+  <style type="text/css">
+    li{
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+    <div id="app">
+      <div class="container">
+        <div class="my-3">
+          <h1 class="text-center text-secondary">轉角遇到妳(你)</h1>
+          <div class="row ">
+            <div class="col-sm-10 mb-2 ">
+              <button type="button" class="btn btn-outline-dark" @click="createData">再轉彎一次</button>
+            </div>
+            <div class="col-sm-2">
+              <button type="button" class="btn btn-outline-dark" @click="changeResolution">換個角度再看看</button>
+            </div>
+            <ul class="row">
+              <li class="col-sm-6 col-md-4 mb-5" v-for="item in data">
+                <div class="card">
+                  <img v-if="ImgType == 0" :src="item.picture.thumbnail" class="card-img-top">
+                  <img v-else-if="ImgType == 1" :src="item.picture.medium" class="card-img-top">
+                  <img v-else :src="item.picture.large" class="card-img-top">
+                  <button type="button" @click="item.favorite = !item.favorite" class="btn rounded-pill position-absolute top-0 end-0">
+                    <i class="bi fs-3 text-danger" :class="item.favorite ? 'bi-heart-fill fs-5':'bi-heart fs-5'" ></i>
+                  </button>
+                  <div class="card-body text-center">
+                    <h4 class="card-title" :class="(item.gender === 'male')?'text-primary':'text-danger'">{{ item.name.first }} {{ item.name.last }} </h4>
+                    <ul class="card-text">
+                      <li class="row ">
+                        <h5 class="text-right col-5">City:</h5>
+                        <p class="col-7 text-center"> {{item.location.city}}</p>
+                      </li>
+                      <li class="row ">
+                        <h5 class="text-right col-5">Country:</h5>
+                        <p class="col-7 text-center"> {{item.location.country}}</p>
+                      </li>
+                      <li class="row">
+                        <h5 class="text-right col-5">Phone:</h5>
+                        <p class="col-7 text-center"> {{item.phone}}</p>
+                      </li>
+                      <li class="row">
+                        <h5 class="text-right col-5">Email:</h5>
+                        <a :href=`mailto:${item.email}` class="col-7 text-center"> {{item.email}}</a>
+                      </li>
+                    </ul>
+                    
+                  </div>
+                </div>
+              </li>
+            </ul>
+          
+          </div>
+        
+      </div><!-- container end -->
+    </div><!-- app end -->
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+    crossorigin="anonymous"
+  ></script>
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <!-- axios CDN -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+  <!-- my js -->
+  <script src="FirWeek.js"></script>
+</body>
+</html>
